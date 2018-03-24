@@ -15,7 +15,7 @@ fi
 
 echo "Copying Ruby source to zip output directory"
 mkdir -p "${TRAVELING_RUBY_BASE_DIR}"
-cp -rT "/workspace" "${TRAVELING_RUBY_BASE_DIR}"
+cp -rT "/workdir" "${TRAVELING_RUBY_BASE_DIR}"
 
 echo "Copying previously downloaded Travelling Ruby"
 cp -rT "/ruby" "${TRAVELING_RUBY_BASE_DIR}"

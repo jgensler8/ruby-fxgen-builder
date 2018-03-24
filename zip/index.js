@@ -1,4 +1,6 @@
 const { execFile } = require('child_process');
+const { stream }   = require('stream');
+const util = require('util');
 
 /**
  * HTTP Cloud Function.
@@ -7,15 +9,23 @@ const { execFile } = require('child_process');
  * @param {Object} res Cloud Function response context.
  */
 exports.hello = (req, res) => {
-  // Do some conversion from req to stdin and environment variables
 
   const child = execFile('bash', ['./ruby_entryscript'], (error, stdout, stderr) => {
+    console.log(stderr)
     if (error) {
       console.log(stdout)
-      console.log(stderr)
       res.send(error)
     } else {
       res.send(stdout)
     }
   });
+
+  input = {
+    headers: req.headers,
+    body: req.body
+  }
+
+  child.stdin.write(JSON.stringify(input))
+  child.stdin.end()
+
 };

@@ -1,2 +1,9 @@
 #!/usr/bin/env ruby
-puts "hello world"
+
+require 'json'
+
+inp = $stdin.read
+
+obj = JSON.parse(inp)
+
+puts obj
